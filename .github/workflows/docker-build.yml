@@ -7,6 +7,11 @@ on:
       - dev
   workflow_dispatch:
 
+# Add permissions needed for GitHub Container Registry
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   get-metadata:
     runs-on: ubuntu-latest

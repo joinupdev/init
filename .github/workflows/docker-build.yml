@@ -50,3 +50,5 @@ jobs:
   deploy:
     needs: [build-docker]
     uses: joinupdev/cicd-workflows/.github/workflows/docker-deploy.yml@main
+    secrets:
+      WATCHTOWER_TOKEN: ${{ secrets.WATCHTOWER_TOKEN }}

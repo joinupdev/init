@@ -7,7 +7,6 @@ on:
       - dev
   workflow_dispatch:
 
-# Add permissions needed for GitHub Container Registry
 permissions:
   contents: read
   packages: write
@@ -39,16 +38,16 @@ jobs:
           BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
           echo "branch-name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
-  build-docker:
+  build:
     needs: get-metadata
-    uses: joinupdev/cicd-workflows/.github/workflows/docker-build-backend.yml@main
+    uses: joinupdev/cicd-workflows/.github/workflows/docker-build.yml@main
     with:
       image-name: "${{ needs.get-metadata.outputs.repo-name }}"
       image-tag: "${{ needs.get-metadata.outputs.branch-name }}"
     secrets: inherit
 
   deploy:
-    needs: [build-docker]
-    uses: joinupdev/cicd-workflows/.github/workflows/docker-deploy.yml@main
+    needs: [build]
+    uses: joinupdev/cicd-workflows/.github/workflows/deploy.yml@main
     secrets:
       WATCHTOWER_TOKEN: ${{ secrets.WATCHTOWER_TOKEN }}

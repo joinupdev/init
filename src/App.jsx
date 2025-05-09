@@ -7,7 +7,7 @@ function App() {
         {/* Main content */}
         <div className="z-10 text-center px-4">
           <h1 className="text-5xl md:text-6xl font-semibold mb-6">
-            Coming Soon!
+            Coming Soon...
           </h1>
           <p className="text-lg md:text-xl font-medium max-w-xl mb-12 leading-relaxed">
             No more WhatsApp groups or social media searches

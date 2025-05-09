@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build and Deploy Docker Image
 
 on:
   push:
@@ -46,3 +46,7 @@ jobs:
       image-name: "${{ needs.get-metadata.outputs.repo-name }}"
       image-tag: "${{ needs.get-metadata.outputs.branch-name }}"
     secrets: inherit
+
+  deploy:
+    needs: [build-docker]
+    uses: joinupdev/cicd-workflows/.github/workflows/docker-deploy.yml@main
